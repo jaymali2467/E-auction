@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 // --- CONFIGURATION ---
+// PASTE YOUR SHEETDB URL HERE
 const API_URL = "https://sheetdb.io/api/v1/YOUR_API_ID_HERE"; 
 
 const MASTER_COMPANIES = [
@@ -51,7 +52,7 @@ export default function App() {
   
   // SETUP STATE
   const [teamCount, setTeamCount] = useState(40);
-  const [monopolyMode, setMonopolyMode] = useState(false); // NEW TOGGLE
+  const [monopolyMode, setMonopolyMode] = useState(false);
   const [selectedCompanyIds, setSelectedCompanyIds] = useState(MASTER_COMPANIES.map(c => c.id));
   const [selectedEventNames, setSelectedEventNames] = useState(EVENTS.map(e => e.name));
 
@@ -73,17 +74,13 @@ export default function App() {
   
   // LOGIC: Calculate Portfolio Value with optional Monopoly Bonus
   const getPortfolioValue = (inventory) => {
-    // 1. Count Sectors
     const sectorCounts = {};
     inventory.forEach(item => {
       sectorCounts[item.sector] = (sectorCounts[item.sector] || 0) + 1;
     });
 
-    // 2. Sum Points
     return inventory.reduce((sum, item) => {
       let points = item.points;
-      
-      // MONOPOLY CHECK: If mode is ON and they own 3+ in this sector
       if (monopolyMode && sectorCounts[item.sector] >= 3) {
         points = points * 1.3;
       }
@@ -327,7 +324,7 @@ export default function App() {
       <div className="leaderboard-section">
         <h3>LIVE RANKINGS</h3>
         <table>
-          <thead><tr><th>Rank</th><th>Team</th><th>Cash</th><th>CEOs</th><th>Portfolio Pts</th></tr></thead>
+          <thead><tr><th>Rank</th><th>Team</th><th>Cash</th><th>CEOs</th><th>Assets (New!)</th><th>Portfolio Pts</th></tr></thead>
           <tbody>
             {[...teams]
               .map(t => ({ ...t, portValue: getPortfolioValue(t.inventory) }))
@@ -337,6 +334,10 @@ export default function App() {
                   <td>#{idx + 1}</td><td>{t.name}</td>
                   <td className="num">{formatMoney(t.cash)}</td>
                   <td className="tiny-text">{t.owned_ceos.map(c => c.sector.substring(0,3)).join(', ')}</td>
+                  {/* NEW COLUMN SHOWING ASSETS */}
+                  <td className="tiny-text" style={{maxWidth:'200px', fontSize:'0.75rem', color:'#8b949e'}}>
+                    {t.inventory.length > 0 ? t.inventory.map(c => c.name).join(', ') : '-'}
+                  </td>
                   <td className="num total">{Math.round(t.portValue)}</td>
                 </tr>
               ))}

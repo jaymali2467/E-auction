@@ -324,7 +324,7 @@ export default function App() {
       <div className="leaderboard-section">
         <h3>LIVE RANKINGS</h3>
         <table>
-          <thead><tr><th>Rank</th><th>Team</th><th>Cash</th><th>CEOs</th><th>Assets (New!)</th><th>Portfolio Pts</th></tr></thead>
+          <thead><tr><th>Rank</th><th>Team</th><th>Cash</th><th>CEOs</th><th>Assets</th><th>Portfolio Pts</th></tr></thead>
           <tbody>
             {[...teams]
               .map(t => ({ ...t, portValue: getPortfolioValue(t.inventory) }))

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 // --- CONFIGURATION ---
-// PASTE YOUR SHEETDB URL HERE
 const API_URL = "https://sheetdb.io/api/v1/rbdtbikekxlgm"; 
 
+// --- DATABASE (Full 48 Companies) ---
 const MASTER_COMPANIES = [
   // SECTOR 1: TECHNOLOGY
   { id: 1, name: "Apple", sector: "Technology", trait: "Stable", points: 100 },
@@ -30,7 +30,7 @@ const MASTER_COMPANIES = [
   { id: 17, name: "NextEra Energy", sector: "Energy", trait: "Growth", points: 70 },
   { id: 18, name: "NTPC", sector: "Energy", trait: "Balanced", points: 40 },
 
-  // SECTOR 4: FMCG (Consumer)
+  // SECTOR 4: FMCG
   { id: 19, name: "Hindustan Unilever", sector: "FMCG", trait: "Stable", points: 100 },
   { id: 20, name: "Nestlé", sector: "FMCG", trait: "Stable", points: 85 },
   { id: 21, name: "ITC", sector: "FMCG", trait: "Stable", points: 70 },
@@ -259,6 +259,13 @@ export default function App() {
     return companies.filter(c => !ownedIds.has(c.id));
   };
 
+  // FIXED: Safe refund calculation that doesn't crash if team changes
+  const getRefundAmount = () => {
+    if (!selectedCompanyId || !activeTeam) return 0;
+    const asset = activeTeam.inventory.find(c => c.id == selectedCompanyId);
+    return asset ? asset.boughtAt * 0.5 : 0;
+  };
+
   if (view === 'SETUP') return (
     <div className="app-container setup-view">
       <h1 className="glitch">E-AUCTION // SETUP</h1>
@@ -304,6 +311,7 @@ export default function App() {
   return (
     <div className="app-container">
       <header>
+        {/* FIXED: Using correct monopolyMode variable */}
         <div className="brand">COMMAND CENTER {monopolyMode && <span style={{color:'gold', fontSize:'0.8em'}}>[BONUS ACTIVE]</span>}</div>
         <div className="controls">
           <button className="sync-btn" onClick={syncFromSheet} disabled={loading}>{loading ? "..." : "🔄 SYNC"}</button>
@@ -343,8 +351,8 @@ export default function App() {
                  )) : []}
                </select>
                <div className="info-box">
-                 REFUND: {selectedCompanyId && activeTeam && activeTeam.inventory.find(c => c.id == selectedCompanyId) 
-                   ? formatMoney(activeTeam.inventory.find(c => c.id == selectedCompanyId).boughtAt * 0.5) : "₹0"}
+                 {/* FIXED: Safe check to prevent crash */}
+                 REFUND: {formatMoney(getRefundAmount())}
                </div>
                <button className="action-btn sell" onClick={handleSellBack}>CONFIRM SELL</button>
              </>
@@ -387,19 +395,13 @@ export default function App() {
                   <td className="tiny-text">{t.owned_ceos.map(c => c.sector.substring(0,3)).join(', ')}</td>
                   <td className="tiny-text" style={{maxWidth:'200px', fontSize:'0.75rem', color:'#8b949e'}}>
                   {t.inventory.length > 0 ? (() => {
-                      // 1. Calculate Sector Counts for this specific team (for Monopoly check)
                       const counts = {};
                       t.inventory.forEach(i => counts[i.sector] = (counts[i.sector] || 0) + 1);
-
-                      // 2. Map each company to "Name (Points)"
                       return t.inventory.map(c => {
                         let pts = c.points;
-                        
-                        // Apply Monopoly Bonus (1.3x) if enabled and they have 3+ in this sector
                         if (monopolyMode && counts[c.sector] >= 3) {
                           pts = pts * 1.3;
                         }
-                        
                         return `${c.name} (${Math.round(pts)})`;
                       }).join(', ');
                     })() : '-'}

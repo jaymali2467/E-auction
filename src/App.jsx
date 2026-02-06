@@ -210,7 +210,7 @@ export default function App() {
 
   if (view === 'SETUP') return (
     <div className="app-container setup-view">
-      <h1 className="glitch">STOCKS ARE HIGH // SETUP</h1>
+      <h1 className="glitch">E-AUCTION // SETUP</h1>
       
       <div className="setup-grid">
         <div className="setup-card">

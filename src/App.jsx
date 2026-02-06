@@ -304,7 +304,7 @@ export default function App() {
   return (
     <div className="app-container">
       <header>
-        <div className="brand">COMMAND CENTER {Bonus && <span style={{color:'gold', fontSize:'0.8em'}}>[BONUS ACTIVE]</span>}</div>
+        <div className="brand">COMMAND CENTER {monopolyMode && <span style={{color:'gold', fontSize:'0.8em'}}>[BONUS ACTIVE]</span>}</div>
         <div className="controls">
           <button className="sync-btn" onClick={syncFromSheet} disabled={loading}>{loading ? "..." : "🔄 SYNC"}</button>
           <button className="reset-btn" onClick={() => setView('SETUP')}>⚠ RESET</button>

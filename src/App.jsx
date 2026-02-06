@@ -6,43 +6,94 @@ import './App.css';
 const API_URL = "https://sheetdb.io/api/v1/YOUR_API_ID_HERE"; 
 
 const MASTER_COMPANIES = [
+  // SECTOR 1: TECHNOLOGY
   { id: 1, name: "Apple", sector: "Technology", trait: "Stable", points: 100 },
   { id: 2, name: "Microsoft", sector: "Technology", trait: "Stable", points: 85 },
   { id: 3, name: "Google", sector: "Technology", trait: "Balanced", points: 70 },
   { id: 4, name: "Infosys", sector: "Technology", trait: "Balanced", points: 70 },
   { id: 5, name: "Paytm", sector: "Technology", trait: "Growth", points: 40 },
   { id: 6, name: "Snowflake", sector: "Technology", trait: "Growth", points: 40 },
-  { id: 7, name: "JPMorgan", "sector": "Finance", trait: "Stable", points: 100 },
-  { id: 8, name: "HDFC Bank", "sector": "Finance", trait: "Stable", points: 85 },
-  { id: 9, name: "Visa", "sector": "Finance", trait: "Balanced", points: 70 },
-  { id: 10, name: "Zerodha", "sector": "Finance", trait: "Volatile", points: 40 },
-  { id: 11, name: "Reliance", "sector": "Energy", trait: "Balanced", points: 100 },
-  { id: 12, name: "ExxonMobil", "sector": "Energy", trait: "Volatile", points: 85 },
-  { id: 13, name: "Adani Green", "sector": "Energy", trait: "Growth", points: 40 },
-  { id: 14, name: "Tesla", "sector": "Mobility", trait: "Growth", points: 100 },
-  { id: 15, name: "Toyota", "sector": "Mobility", trait: "Stable", points: 85 },
-  { id: 16, name: "Uber", "sector": "Mobility", trait: "Volatile", points: 40 },
-  { id: 17, name: "Tata Steel", "sector": "Manufacturing", trait: "Volatile", points: 100 },
-  { id: 18, name: "L&T", "sector": "Manufacturing", trait: "Balanced", points: 85 },
-  { id: 19, name: "Disney", "sector": "Media", trait: "Stable", points: 100 },
-  { id: 20, name: "Pfizer", "sector": "Healthcare", trait: "Stable", points: 100 }
+
+  // SECTOR 2: FINANCE
+  { id: 7, name: "JPMorgan Chase", sector: "Finance", trait: "Stable", points: 100 },
+  { id: 8, name: "HDFC Bank", sector: "Finance", trait: "Stable", points: 85 },
+  { id: 9, name: "Visa", sector: "Finance", trait: "Balanced", points: 70 },
+  { id: 10, name: "Mastercard", sector: "Finance", trait: "Balanced", points: 70 },
+  { id: 11, name: "Zerodha", sector: "Finance", trait: "Volatile", points: 40 },
+  { id: 12, name: "Robinhood", sector: "Finance", trait: "Volatile", points: 40 },
+
+  // SECTOR 3: ENERGY
+  { id: 13, name: "Reliance Industries", sector: "Energy", trait: "Balanced", points: 100 },
+  { id: 14, name: "ExxonMobil", sector: "Energy", trait: "Volatile", points: 85 },
+  { id: 15, name: "Shell", sector: "Energy", trait: "Volatile", points: 70 },
+  { id: 16, name: "Adani Green Energy", sector: "Energy", trait: "Growth", points: 70 },
+  { id: 17, name: "NextEra Energy", sector: "Energy", trait: "Growth", points: 70 },
+  { id: 18, name: "NTPC", sector: "Energy", trait: "Balanced", points: 40 },
+
+  // SECTOR 4: FMCG (Consumer)
+  { id: 19, name: "Hindustan Unilever", sector: "FMCG", trait: "Stable", points: 100 },
+  { id: 20, name: "Nestlé", sector: "FMCG", trait: "Stable", points: 85 },
+  { id: 21, name: "ITC", sector: "FMCG", trait: "Stable", points: 70 },
+  { id: 22, name: "Procter & Gamble", sector: "FMCG", trait: "Balanced", points: 70 },
+  { id: 23, name: "Zomato", sector: "FMCG", trait: "Volatile", points: 40 },
+  { id: 24, name: "DoorDash", sector: "FMCG", trait: "Volatile", points: 40 },
+
+  // SECTOR 5: HEALTHCARE
+  { id: 25, name: "Pfizer", sector: "Healthcare", trait: "Stable", points: 100 },
+  { id: 26, name: "Johnson & Johnson", sector: "Healthcare", trait: "Stable", points: 85 },
+  { id: 27, name: "Sun Pharma", sector: "Healthcare", trait: "Balanced", points: 70 },
+  { id: 28, name: "Roche", sector: "Healthcare", trait: "Balanced", points: 70 },
+  { id: 29, name: "Biocon", sector: "Healthcare", trait: "Growth", points: 40 },
+  { id: 30, name: "Moderna", sector: "Healthcare", trait: "Growth", points: 40 },
+
+  // SECTOR 6: MANUFACTURING
+  { id: 31, name: "Tata Steel", sector: "Manufacturing", trait: "Volatile", points: 100 },
+  { id: 32, name: "Larsen & Toubro", sector: "Manufacturing", trait: "Balanced", points: 85 },
+  { id: 33, name: "Siemens", sector: "Manufacturing", trait: "Balanced", points: 70 },
+  { id: 34, name: "Caterpillar", sector: "Manufacturing", trait: "Volatile", points: 70 },
+  { id: 35, name: "ABB", sector: "Manufacturing", trait: "Growth", points: 40 },
+  { id: 36, name: "Bharat Forge", sector: "Manufacturing", trait: "Volatile", points: 40 },
+
+  // SECTOR 7: MOBILITY
+  { id: 37, name: "Tesla", sector: "Mobility", trait: "Growth", points: 100 },
+  { id: 38, name: "Toyota", sector: "Mobility", trait: "Stable", points: 85 },
+  { id: 39, name: "Maruti Suzuki", sector: "Mobility", trait: "Volatile", points: 70 },
+  { id: 40, name: "Uber", sector: "Mobility", trait: "Volatile", points: 70 },
+  { id: 41, name: "BYD", sector: "Mobility", trait: "Growth", points: 40 },
+  { id: 42, name: "Ola Electric", sector: "Mobility", trait: "Growth", points: 40 },
+
+  // SECTOR 8: MEDIA
+  { id: 43, name: "Disney", sector: "Media", trait: "Stable", points: 100 },
+  { id: 44, name: "Sony", sector: "Media", trait: "Balanced", points: 85 },
+  { id: 45, name: "Netflix", sector: "Media", trait: "Growth", points: 70 },
+  { id: 46, name: "Zee Entertainment", sector: "Media", trait: "Volatile", points: 70 },
+  { id: 47, name: "JioHotstar", sector: "Media", trait: "Balanced", points: 40 },
+  { id: 48, name: "PVR INOX", sector: "Media", trait: "Volatile", points: 40 }
 ];
 
 const EVENTS = [
-  { name: "Economic Boom", rules: { Manufacturing: 30, Mobility: 25, Technology: 20, Finance: 10 } },
-  { name: "Recession", rules: { Manufacturing: -30, Mobility: -25, Technology: -20, Finance: -10 } },
-  { name: "Pandemic", rules: { Healthcare: 40, Mobility: -25, Media: -20 } },
-  { name: "Tech Breakthrough", rules: { Technology: 25, Finance: 15, Manufacturing: -10 } },
-  { name: "Energy Crisis", rules: { Energy: 30, Mobility: -15, Manufacturing: -20 } },
-  { name: "Festive Boom", rules: { FMCG: 30, Media: 25, Mobility: 20 } }
+  { name: "Post-Pandemic Recovery", rules: { Manufacturing: 30, Mobility: 25, Technology: 20, FMCG: 10 } },
+  { name: "Global Financial Crisis", rules: { Manufacturing: -30, Mobility: -25, Media: -20, FMCG: -10 } },
+  { name: "Central Bank Rate Hike", rules: { Finance: 20, Manufacturing: -20, Technology: -15 } },
+  { name: "Cheap Money Era", rules: { Manufacturing: 25, Technology: 20, Finance: -10 } },
+  { name: "National Infrastructure Mission", rules: { Manufacturing: 35, Energy: 20 } },
+  { name: "Regulatory Crackdown", rules: { Finance: -30, Technology: -25, Energy: -20 } },
+  { name: "Ease-of-Doing-Business", rules: { Manufacturing: 30, Finance: 25, Technology: 20 } },
+  { name: "Global Supply Chain Breakdown", rules: { Technology: -25, Manufacturing: -30, Healthcare: -15, FMCG: 10 } },
+  { name: "Energy Price Spike", rules: { Energy: 35, Manufacturing: -25, Mobility: -30, FMCG: -10 } },
+  { name: "Energy Price Crash", rules: { Energy: -35, Manufacturing: 20, Mobility: 25 } },
+  { name: "Festive Consumption Boom", rules: { FMCG: 30, Media: 25, Mobility: 20 } },
+  { name: "Pandemic Outbreak", rules: { Healthcare: 40, Mobility: -25, Media: -20 } }
 ];
 
 const CEOS = [
   { name: "Tech Visionary", sector: "Technology", multiplier: 1.3 },
   { name: "Banking Strategist", sector: "Finance", multiplier: 1.4 },
   { name: "Energy Czar", sector: "Energy", multiplier: 1.4 },
+  { name: "Consumer Baron", sector: "FMCG", multiplier: 1.4 },
+  { name: "Healthcare Leader", sector: "Healthcare", multiplier: 1.5 },
+  { name: "Infrastructure Builder", sector: "Manufacturing", multiplier: 1.3 },
   { name: "Mobility Disruptor", sector: "Mobility", multiplier: 1.3 },
-  { name: "Iron Man", sector: "Manufacturing", multiplier: 1.3 },
   { name: "Media Mogul", sector: "Media", multiplier: 1.4 }
 ];
 

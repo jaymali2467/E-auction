@@ -271,7 +271,7 @@ export default function App() {
           <div className="monopoly-toggle" style={{marginTop: '20px', padding: '10px', border: '1px solid #333'}}>
             <label style={{display:'flex', alignItems:'center', gap:'10px'}}>
               <input type="checkbox" checked={monopolyMode} onChange={e => setMonopolyMode(e.target.checked)} style={{width:'20px', height:'20px'}}/>
-              ENABLE MONOPOLY BONUS (3+ same sector = 1.3x)
+              ENABLE BONUS (3+ same sector = 1.3x)
             </label>
           </div>
         </div>
@@ -304,7 +304,7 @@ export default function App() {
   return (
     <div className="app-container">
       <header>
-        <div className="brand">COMMAND CENTER {monopolyMode && <span style={{color:'gold', fontSize:'0.8em'}}>[MONOPOLY ACTIVE]</span>}</div>
+        <div className="brand">COMMAND CENTER {Bonus && <span style={{color:'gold', fontSize:'0.8em'}}>[BONUS ACTIVE]</span>}</div>
         <div className="controls">
           <button className="sync-btn" onClick={syncFromSheet} disabled={loading}>{loading ? "..." : "🔄 SYNC"}</button>
           <button className="reset-btn" onClick={() => setView('SETUP')}>⚠ RESET</button>

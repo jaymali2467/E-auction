@@ -4,88 +4,96 @@ import './App.css';
 // --- CONFIGURATION ---
 const API_URL = "https://sheetdb.io/api/v1/rbdtbikekxlgm"; 
 
-// --- DATABASE (Full 48 Companies) ---
+// --- DATABASE ---
 const MASTER_COMPANIES = [
   // SECTOR 1: TECHNOLOGY
-  { id: 1, name: "Apple", sector: "Technology", trait: "Stable", points: 100 },
-  { id: 2, name: "Microsoft", sector: "Technology", trait: "Stable", points: 85 },
-  { id: 3, name: "Google", sector: "Technology", trait: "Balanced", points: 70 },
-  { id: 4, name: "Infosys", sector: "Technology", trait: "Balanced", points: 70 },
-  { id: 5, name: "Paytm", sector: "Technology", trait: "Growth", points: 40 },
-  { id: 6, name: "Snowflake", sector: "Technology", trait: "Growth", points: 40 },
+  { id: 1, name: "Apple", sector: "Technology", trait: "Stable", points: 1000 },
+  { id: 2, name: "Microsoft", sector: "Technology", trait: "Stable", points: 850 },
+  { id: 3, name: "Google", sector: "Technology", trait: "Balanced", points: 700 },
+  { id: 4, name: "Infosys", sector: "Technology", trait: "Balanced", points: 700 },
+  { id: 5, name: "Paytm", sector: "Technology", trait: "Growth", points: 400 },
+  { id: 6, name: "Snowflake", sector: "Technology", trait: "Growth", points: 400 },
 
   // SECTOR 2: FINANCE
-  { id: 7, name: "JPMorgan Chase", sector: "Finance", trait: "Stable", points: 100 },
-  { id: 8, name: "HDFC Bank", sector: "Finance", trait: "Stable", points: 85 },
-  { id: 9, name: "Visa", sector: "Finance", trait: "Balanced", points: 70 },
-  { id: 10, name: "Mastercard", sector: "Finance", trait: "Balanced", points: 70 },
-  { id: 11, name: "Zerodha", sector: "Finance", trait: "Volatile", points: 40 },
-  { id: 12, name: "Robinhood", sector: "Finance", trait: "Volatile", points: 40 },
+  { id: 7, name: "JPMorgan Chase", sector: "Finance", trait: "Stable", points: 1000 },
+  { id: 8, name: "HDFC Bank", sector: "Finance", trait: "Stable", points: 850 },
+  { id: 9, name: "Visa", sector: "Finance", trait: "Balanced", points: 700 },
+  { id: 10, name: "Mastercard", sector: "Finance", trait: "Balanced", points: 700 },
+  { id: 11, name: "Zerodha", sector: "Finance", trait: "Volatile", points: 400 },
+  { id: 12, name: "Robinhood", sector: "Finance", trait: "Volatile", points: 400 },
 
   // SECTOR 3: ENERGY
-  { id: 13, name: "Reliance Industries", sector: "Energy", trait: "Balanced", points: 100 },
-  { id: 14, name: "ExxonMobil", sector: "Energy", trait: "Volatile", points: 85 },
-  { id: 15, name: "Shell", sector: "Energy", trait: "Volatile", points: 70 },
-  { id: 16, name: "Adani Green Energy", sector: "Energy", trait: "Growth", points: 70 },
-  { id: 17, name: "NextEra Energy", sector: "Energy", trait: "Growth", points: 70 },
-  { id: 18, name: "NTPC", sector: "Energy", trait: "Balanced", points: 40 },
+  { id: 13, name: "Reliance Industries", sector: "Energy", trait: "Balanced", points: 1000 },
+  { id: 14, name: "ExxonMobil", sector: "Energy", trait: "Volatile", points: 850 },
+  { id: 15, name: "Shell", sector: "Energy", trait: "Volatile", points: 700 },
+  { id: 16, name: "Adani Green Energy", sector: "Energy", trait: "Growth", points: 700 },
+  { id: 17, name: "NextEra Energy", sector: "Energy", trait: "Growth", points: 700 },
+  { id: 18, name: "NTPC", sector: "Energy", trait: "Balanced", points: 400 },
 
   // SECTOR 4: FMCG
-  { id: 19, name: "Hindustan Unilever", sector: "FMCG", trait: "Stable", points: 100 },
-  { id: 20, name: "Nestlé", sector: "FMCG", trait: "Stable", points: 85 },
-  { id: 21, name: "ITC", sector: "FMCG", trait: "Stable", points: 70 },
-  { id: 22, name: "Procter & Gamble", sector: "FMCG", trait: "Balanced", points: 70 },
-  { id: 23, name: "Zomato", sector: "FMCG", trait: "Volatile", points: 40 },
-  { id: 24, name: "DoorDash", sector: "FMCG", trait: "Volatile", points: 40 },
+  { id: 19, name: "Hindustan Unilever", sector: "FMCG", trait: "Stable", points: 1000 },
+  { id: 20, name: "Nestlé", sector: "FMCG", trait: "Stable", points: 850 },
+  { id: 21, name: "ITC", sector: "FMCG", trait: "Stable", points: 700 },
+  { id: 22, name: "Procter & Gamble", sector: "FMCG", trait: "Balanced", points: 700 },
+  { id: 23, name: "Zomato", sector: "FMCG", trait: "Volatile", points: 400 },
+  { id: 24, name: "DoorDash", sector: "FMCG", trait: "Volatile", points: 400 },
 
   // SECTOR 5: HEALTHCARE
-  { id: 25, name: "Pfizer", sector: "Healthcare", trait: "Stable", points: 100 },
-  { id: 26, name: "Johnson & Johnson", sector: "Healthcare", trait: "Stable", points: 85 },
-  { id: 27, name: "Sun Pharma", sector: "Healthcare", trait: "Balanced", points: 70 },
-  { id: 28, name: "Roche", sector: "Healthcare", trait: "Balanced", points: 70 },
-  { id: 29, name: "Biocon", sector: "Healthcare", trait: "Growth", points: 40 },
-  { id: 30, name: "Moderna", sector: "Healthcare", trait: "Growth", points: 40 },
+  { id: 25, name: "Pfizer", sector: "Healthcare", trait: "Stable", points: 1000 },
+  { id: 26, name: "Johnson & Johnson", sector: "Healthcare", trait: "Stable", points: 850 },
+  { id: 27, name: "Sun Pharma", sector: "Healthcare", trait: "Balanced", points: 700 },
+  { id: 28, name: "Roche", sector: "Healthcare", trait: "Balanced", points: 700 },
+  { id: 29, name: "Biocon", sector: "Healthcare", trait: "Growth", points: 400 },
+  { id: 30, name: "Moderna", sector: "Healthcare", trait: "Growth", points: 400 },
 
   // SECTOR 6: MANUFACTURING
-  { id: 31, name: "Tata Steel", sector: "Manufacturing", trait: "Volatile", points: 100 },
-  { id: 32, name: "Larsen & Toubro", sector: "Manufacturing", trait: "Balanced", points: 85 },
-  { id: 33, name: "Siemens", sector: "Manufacturing", trait: "Balanced", points: 70 },
-  { id: 34, name: "Caterpillar", sector: "Manufacturing", trait: "Volatile", points: 70 },
-  { id: 35, name: "ABB", sector: "Manufacturing", trait: "Growth", points: 40 },
-  { id: 36, name: "Bharat Forge", sector: "Manufacturing", trait: "Volatile", points: 40 },
+  { id: 31, name: "Tata Steel", sector: "Manufacturing", trait: "Volatile", points: 1000 },
+  { id: 32, name: "Larsen & Toubro", sector: "Manufacturing", trait: "Balanced", points: 850 },
+  { id: 33, name: "Siemens", sector: "Manufacturing", trait: "Balanced", points: 700 },
+  { id: 34, name: "Caterpillar", sector: "Manufacturing", trait: "Volatile", points: 700 },
+  { id: 35, name: "ABB", sector: "Manufacturing", trait: "Growth", points: 400 },
+  { id: 36, name: "Bharat Forge", sector: "Manufacturing", trait: "Volatile", points: 400 },
 
   // SECTOR 7: MOBILITY
-  { id: 37, name: "Tesla", sector: "Mobility", trait: "Growth", points: 100 },
-  { id: 38, name: "Toyota", sector: "Mobility", trait: "Stable", points: 85 },
-  { id: 39, name: "Maruti Suzuki", sector: "Mobility", trait: "Volatile", points: 70 },
-  { id: 40, name: "Uber", sector: "Mobility", trait: "Volatile", points: 70 },
-  { id: 41, name: "BYD", sector: "Mobility", trait: "Growth", points: 40 },
-  { id: 42, name: "Ola Electric", sector: "Mobility", trait: "Growth", points: 40 },
+  { id: 37, name: "Tesla", sector: "Mobility", trait: "Growth", points: 1000 },
+  { id: 38, name: "Toyota", sector: "Mobility", trait: "Stable", points: 850 },
+  { id: 39, name: "Maruti Suzuki", sector: "Mobility", trait: "Volatile", points: 700 },
+  { id: 40, name: "Uber", sector: "Mobility", trait: "Volatile", points: 700 },
+  { id: 41, name: "BYD", sector: "Mobility", trait: "Growth", points: 400 },
+  { id: 42, name: "Ola Electric", sector: "Mobility", trait: "Growth", points: 400 },
 
   // SECTOR 8: MEDIA
-  { id: 43, name: "Disney", sector: "Media", trait: "Stable", points: 100 },
-  { id: 44, name: "Sony", sector: "Media", trait: "Balanced", points: 85 },
-  { id: 45, name: "Netflix", sector: "Media", trait: "Growth", points: 70 },
-  { id: 46, name: "Zee Entertainment", sector: "Media", trait: "Volatile", points: 70 },
-  { id: 47, name: "JioHotstar", sector: "Media", trait: "Balanced", points: 40 },
-  { id: 48, name: "PVR INOX", sector: "Media", trait: "Volatile", points: 40 }
+  { id: 43, name: "Disney", sector: "Media", trait: "Stable", points: 1000 },
+  { id: 44, name: "Sony", sector: "Media", trait: "Balanced", points: 850 },
+  { id: 45, name: "Netflix", sector: "Media", trait: "Growth", points: 700 },
+  { id: 46, name: "Zee Entertainment", sector: "Media", trait: "Volatile", points: 700 },
+  { id: 47, name: "JioHotstar", sector: "Media", trait: "Balanced", points: 400 },
+  { id: 48, name: "PVR INOX", sector: "Media", trait: "Volatile", points: 400 }
 ];
+
+const TRAIT_RULES = {
+  "Stable":   { pos: 1.20, neg: 1.00 }, // Immune to negative
+  "Volatile": { pos: 1.50, neg: 0.50 }, 
+  "Growth":   { pos: 1.50, neg: 1.00 }, // Immune to negative
+  "Balanced": { pos: 1.20, neg: 0.80 }  
+};
 
 const EVENTS = [
-  { name: "Post-Pandemic Recovery", rules: { Manufacturing: 30, Mobility: 25, Technology: 20, FMCG: 10 } },
-  { name: "Global Financial Crisis", rules: { Manufacturing: -30, Mobility: -25, Media: -20, FMCG: -10 } },
-  { name: "Central Bank Rate Hike", rules: { Finance: 20, Manufacturing: -20, Technology: -15 } },
-  { name: "Cheap Money Era", rules: { Manufacturing: 25, Technology: 20, Finance: -10 } },
-  { name: "National Infrastructure Mission", rules: { Manufacturing: 35, Energy: 20 } },
-  { name: "Regulatory Crackdown", rules: { Finance: -30, Technology: -25, Energy: -20 } },
-  { name: "Ease-of-Doing-Business", rules: { Manufacturing: 30, Finance: 25, Technology: 20 } },
-  { name: "Global Supply Chain Breakdown", rules: { Technology: -25, Manufacturing: -30, Healthcare: -15, FMCG: 10 } },
-  { name: "Energy Price Spike", rules: { Energy: 35, Manufacturing: -25, Mobility: -30, FMCG: -10 } },
-  { name: "Energy Price Crash", rules: { Energy: -35, Manufacturing: 20, Mobility: 25 } },
-  { name: "Festive Consumption Boom", rules: { FMCG: 30, Media: 25, Mobility: 20 } },
-  { name: "Pandemic Outbreak", rules: { Healthcare: 40, Mobility: -25, Media: -20 } }
+  { name: "Post-Pandemic Recovery", impacts: { Manufacturing: 1, Mobility: 1, Technology: 1, FMCG: 1 } },
+  { name: "Global Financial Crisis", impacts: { Manufacturing: -1, Mobility: -1, Media: -1, FMCG: -1 } },
+  { name: "Central Bank Rate Hike", impacts: { Finance: 1, Manufacturing: -1, Technology: -1 } },
+  { name: "Cheap Money Era", impacts: { Manufacturing: 1, Technology: 1, Finance: -1 } },
+  { name: "National Infrastructure Mission", impacts: { Manufacturing: 1, Energy: 1 } },
+  { name: "Regulatory Crackdown", impacts: { Finance: -1, Technology: -1, Energy: -1 } },
+  { name: "Ease-of-Doing-Business", impacts: { Manufacturing: 1, Finance: 1, Technology: 1 } },
+  { name: "Global Supply Chain Breakdown", impacts: { Technology: -1, Manufacturing: -1, Healthcare: -1, FMCG: 1 } },
+  { name: "Energy Price Spike", impacts: { Energy: 1, Manufacturing: -1, Mobility: -1, FMCG: -1 } },
+  { name: "Energy Price Crash", impacts: { Energy: -1, Manufacturing: 1, Mobility: 1 } },
+  { name: "Festive Consumption Boom", impacts: { FMCG: 1, Media: 1, Mobility: 1 } },
+  { name: "Pandemic Outbreak", impacts: { Healthcare: 1, Mobility: -1, Media: -1 } }
 ];
 
+// 1.3 multiplier for all (Flat Bonus)
 const CEOS = [
   { name: "Tech Visionary", sector: "Technology", multiplier: 1.3 },
   { name: "Banking Strategist", sector: "Finance", multiplier: 1.3 },
@@ -123,19 +131,32 @@ export default function App() {
   // --- HELPERS ---
   const formatMoney = (amount) => "₹" + Math.round(amount).toLocaleString('en-IN');
   
-  // LOGIC: Calculate Portfolio Value with optional Monopoly Bonus
-  const getPortfolioValue = (inventory) => {
-    const sectorCounts = {};
-    inventory.forEach(item => {
-      sectorCounts[item.sector] = (sectorCounts[item.sector] || 0) + 1;
-    });
+  // --- CORE LOGIC: CALCULATE POINTS DYNAMICALLY ---
+  // This calculates the LIVE score based on: Base Points * CEO Multiplier * Monopoly Multiplier
+  const calculateLivePoints = (company, team) => {
+    let pts = company.points; // Start with Base Points (modified by events)
 
-    return inventory.reduce((sum, item) => {
-      let points = item.points;
-      if (monopolyMode && sectorCounts[item.sector] >= 3) {
-        points = points * 1.3;
+    // 1. Apply CEO Multiplier (1.3x)
+    const hasCEO = team.owned_ceos.find(c => c.sector === company.sector);
+    if (hasCEO) {
+      pts = pts * hasCEO.multiplier;
+    }
+
+    // 2. Apply Monopoly Bonus (1.3x)
+    if (monopolyMode) {
+      // Check if team has 3+ companies in this sector
+      const sectorCount = team.inventory.filter(i => i.sector === company.sector).length;
+      if (sectorCount >= 3) {
+        pts = pts * 1.3;
       }
-      return sum + points;
+    }
+
+    return pts;
+  };
+
+  const getPortfolioValue = (team) => {
+    return team.inventory.reduce((sum, item) => {
+      return sum + calculateLivePoints(item, team);
     }, 0);
   };
 
@@ -223,29 +244,45 @@ export default function App() {
     alert(`REFUNDED: ₹${refund}`);
   };
 
+  // UPDATED: Only update Base Points (CEO logic is now handled in getPortfolioValue)
   const handleTriggerEvent = () => {
     if (!eventToTrigger) return;
-    const rule = activeEvents.find(e => e.name === eventToTrigger).rules;
-    const newCompanies = companies.map(comp => applyEventMath(comp, rule, 1));
+    const impacts = activeEvents.find(e => e.name === eventToTrigger).impacts;
+    
+    // 1. Update Market Prices (Base Points)
+    const newCompanies = companies.map(comp => applyEventMath(comp, impacts));
+    
+    // 2. Update Team Inventories (Update their Base Points only)
     const newTeams = teams.map(team => {
       const updatedInventory = team.inventory.map(item => {
-        const hasCeo = team.owned_ceos.find(ceo => ceo.sector === item.sector);
-        return applyEventMath(item, rule, hasCeo ? hasCeo.multiplier : 1);
+        // Find the new version of this company from the market update
+        const updatedComp = newCompanies.find(c => c.id === item.id);
+        // Keep the purchase data, but update the base points
+        return { ...item, points: updatedComp ? updatedComp.points : item.points };
       });
       return { ...team, inventory: updatedInventory };
     });
+    
     setCompanies(newCompanies);
     setTeams(newTeams);
     alert(`EVENT APPLIED: ${eventToTrigger}`);
   };
 
-  const applyEventMath = (comp, rule, multiplier) => {
-    if (rule[comp.sector] || rule['ALL']) {
-      let change = rule[comp.sector] || 0;
-      if (comp.trait === 'Stable' && change < 0) change = 0;
-      if (comp.trait === 'Volatile') change = change * 2;
-      change = change * multiplier;
-      const newPoints = Math.round(comp.points * (1 + change / 100));
+  // Logic: Only Traits affect Base Points
+  const applyEventMath = (comp, impacts) => {
+    const direction = impacts[comp.sector]; 
+  
+    if (direction) {
+      const rules = TRAIT_RULES[comp.trait];
+      
+      // Get Multiplier (e.g. 1.20 or 0.50)
+      let traitMult = direction === 1 ? rules.pos : rules.neg;
+      
+      // BUG FIX: If Stable/Growth and multiplier is 1.0 (Immune), do NOT change anything.
+      // This prevents accidental point loss due to float rounding or logic errors.
+      if (traitMult === 1.0) return comp;
+
+      const newPoints = Math.round(comp.points * traitMult);
       return { ...comp, points: newPoints };
     }
     return comp;
@@ -259,7 +296,6 @@ export default function App() {
     return companies.filter(c => !ownedIds.has(c.id));
   };
 
-  // FIXED: Safe refund calculation that doesn't crash if team changes
   const getRefundAmount = () => {
     if (!selectedCompanyId || !activeTeam) return 0;
     const asset = activeTeam.inventory.find(c => c.id == selectedCompanyId);
@@ -269,12 +305,10 @@ export default function App() {
   if (view === 'SETUP') return (
     <div className="app-container setup-view">
       <h1 className="glitch">E-AUCTION // SETUP</h1>
-      
       <div className="setup-grid">
         <div className="setup-card">
           <label>TOTAL TEAMS</label>
           <input type="number" value={teamCount} onChange={e => setTeamCount(e.target.value)} className="big-input"/>
-          
           <div className="monopoly-toggle" style={{marginTop: '20px', padding: '10px', border: '1px solid #333'}}>
             <label style={{display:'flex', alignItems:'center', gap:'10px'}}>
               <input type="checkbox" checked={monopolyMode} onChange={e => setMonopolyMode(e.target.checked)} style={{width:'20px', height:'20px'}}/>
@@ -282,7 +316,6 @@ export default function App() {
             </label>
           </div>
         </div>
-
         <div className="setup-card scrollable">
           <h3>SELECT COMPANIES</h3>
           {MASTER_COMPANIES.map(c => (
@@ -292,7 +325,6 @@ export default function App() {
              </div>
           ))}
         </div>
-
         <div className="setup-card scrollable">
           <h3>SELECT EVENTS</h3>
           {EVENTS.map(e => (
@@ -303,7 +335,6 @@ export default function App() {
           ))}
         </div>
       </div>
-
       <button className="start-btn" onClick={startGame}>INITIALIZE SYSTEM</button>
     </div>
   );
@@ -311,7 +342,6 @@ export default function App() {
   return (
     <div className="app-container">
       <header>
-        {/* FIXED: Using correct monopolyMode variable */}
         <div className="brand">COMMAND CENTER {monopolyMode && <span style={{color:'gold', fontSize:'0.8em'}}>[BONUS ACTIVE]</span>}</div>
         <div className="controls">
           <button className="sync-btn" onClick={syncFromSheet} disabled={loading}>{loading ? "..." : "🔄 SYNC"}</button>
@@ -351,7 +381,6 @@ export default function App() {
                  )) : []}
                </select>
                <div className="info-box">
-                 {/* FIXED: Safe check to prevent crash */}
                  REFUND: {formatMoney(getRefundAmount())}
                </div>
                <button className="action-btn sell" onClick={handleSellBack}>CONFIRM SELL</button>
@@ -386,7 +415,7 @@ export default function App() {
           <thead><tr><th>Rank</th><th>Team</th><th>Cash</th><th>CEOs</th><th>Assets</th><th>Portfolio Pts</th></tr></thead>
           <tbody>
             {[...teams]
-              .map(t => ({ ...t, portValue: getPortfolioValue(t.inventory) }))
+              .map(t => ({ ...t, portValue: getPortfolioValue(t) }))
               .sort((a,b) => b.portValue - a.portValue)
               .map((t, idx) => (
                 <tr key={t.id} className={idx < 3 ? 'top-rank' : ''}>
@@ -394,17 +423,10 @@ export default function App() {
                   <td className="num">{formatMoney(t.cash)}</td>
                   <td className="tiny-text">{t.owned_ceos.map(c => c.sector.substring(0,3)).join(', ')}</td>
                   <td className="tiny-text" style={{maxWidth:'200px', fontSize:'0.75rem', color:'#8b949e'}}>
-                  {t.inventory.length > 0 ? (() => {
-                      const counts = {};
-                      t.inventory.forEach(i => counts[i.sector] = (counts[i.sector] || 0) + 1);
-                      return t.inventory.map(c => {
-                        let pts = c.points;
-                        if (monopolyMode && counts[c.sector] >= 3) {
-                          pts = pts * 1.3;
-                        }
-                        return `${c.name} (${Math.round(pts)})`;
-                      }).join(', ');
-                    })() : '-'}
+                  {t.inventory.length > 0 ? t.inventory.map(c => {
+                      const pts = calculateLivePoints(c, t); // Calculate live points per item
+                      return `${c.name} (${Math.round(pts)})`;
+                    }).join(', ') : '-'}
                   </td>
                   <td className="num total">{Math.round(t.portValue)}</td>
                 </tr>

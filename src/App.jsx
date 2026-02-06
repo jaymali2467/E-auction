@@ -88,13 +88,13 @@ const EVENTS = [
 
 const CEOS = [
   { name: "Tech Visionary", sector: "Technology", multiplier: 1.3 },
-  { name: "Banking Strategist", sector: "Finance", multiplier: 1.4 },
-  { name: "Energy Czar", sector: "Energy", multiplier: 1.4 },
-  { name: "Consumer Baron", sector: "FMCG", multiplier: 1.4 },
-  { name: "Healthcare Leader", sector: "Healthcare", multiplier: 1.5 },
+  { name: "Banking Strategist", sector: "Finance", multiplier: 1.3 },
+  { name: "Energy Czar", sector: "Energy", multiplier: 1.3 },
+  { name: "Consumer Baron", sector: "FMCG", multiplier: 1.3 },
+  { name: "Healthcare Leader", sector: "Healthcare", multiplier: 1.3 },
   { name: "Infrastructure Builder", sector: "Manufacturing", multiplier: 1.3 },
   { name: "Mobility Disruptor", sector: "Mobility", multiplier: 1.3 },
-  { name: "Media Mogul", sector: "Media", multiplier: 1.4 }
+  { name: "Media Mogul", sector: "Media", multiplier: 1.3 }
 ];
 
 export default function App() {

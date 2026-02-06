@@ -3,7 +3,7 @@ import './App.css';
 
 // --- CONFIGURATION ---
 // PASTE YOUR SHEETDB URL HERE
-const API_URL = "https://sheetdb.io/api/v1/YOUR_API_ID_HERE"; 
+const API_URL = "https://sheetdb.io/api/v1/rbdtbikekxlgm"; 
 
 const MASTER_COMPANIES = [
   // SECTOR 1: TECHNOLOGY
@@ -281,7 +281,7 @@ export default function App() {
           {MASTER_COMPANIES.map(c => (
              <div key={c.id} style={{display:'flex', gap:'10px'}}>
                <input type="checkbox" checked={selectedCompanyIds.includes(c.id)} onChange={() => toggleCompany(c.id)}/>
-               <span>{c.name}</span>
+               <span>{c.name} ({c.sector})</span>
              </div>
           ))}
         </div>
@@ -353,7 +353,7 @@ export default function App() {
                <select onChange={e => setSelectedCompanyId(e.target.value)}>
                  <option value="">-- Available --</option>
                  {getAvailableMarketCompanies().map(c => (
-                   <option key={c.id} value={c.id}>{c.name} ({c.points} pts)</option>
+                   <option key={c.id} value={c.id}>{c.name} ({c.sector}) ({c.points} pts)</option>
                  ))}
                </select>
                <input type="number" placeholder="Bid Amount" value={bidAmount} onChange={e => setBidAmount(e.target.value)}/>
@@ -385,9 +385,24 @@ export default function App() {
                   <td>#{idx + 1}</td><td>{t.name}</td>
                   <td className="num">{formatMoney(t.cash)}</td>
                   <td className="tiny-text">{t.owned_ceos.map(c => c.sector.substring(0,3)).join(', ')}</td>
-                  {/* NEW COLUMN SHOWING ASSETS */}
                   <td className="tiny-text" style={{maxWidth:'200px', fontSize:'0.75rem', color:'#8b949e'}}>
-                    {t.inventory.length > 0 ? t.inventory.map(c => c.name).join(', ') : '-'}
+                  {t.inventory.length > 0 ? (() => {
+                      // 1. Calculate Sector Counts for this specific team (for Monopoly check)
+                      const counts = {};
+                      t.inventory.forEach(i => counts[i.sector] = (counts[i.sector] || 0) + 1);
+
+                      // 2. Map each company to "Name (Points)"
+                      return t.inventory.map(c => {
+                        let pts = c.points;
+                        
+                        // Apply Monopoly Bonus (1.3x) if enabled and they have 3+ in this sector
+                        if (monopolyMode && counts[c.sector] >= 3) {
+                          pts = pts * 1.3;
+                        }
+                        
+                        return `${c.name} (${Math.round(pts)})`;
+                      }).join(', ');
+                    })() : '-'}
                   </td>
                   <td className="num total">{Math.round(t.portValue)}</td>
                 </tr>
